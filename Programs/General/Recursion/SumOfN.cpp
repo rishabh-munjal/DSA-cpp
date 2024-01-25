@@ -3,13 +3,13 @@
 #include <iostream>
 using namespace std;
 
-void sumof(int n){
+int sumof(int n){
 
-    sumof(n-1);
+        if(n==0){
+            return 0;
+        }
 
-
-    
-
+        return n + sumof(n-1);  
 }
 
 
@@ -19,6 +19,6 @@ int main()
     cout<<"enter the value of n";
     cin>>n;
 
-    sumof(n);
+    cout<<sumof(n);
     return 0;
 }
