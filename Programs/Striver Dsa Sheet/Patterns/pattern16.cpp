@@ -1,0 +1,25 @@
+//A
+//BB
+//CCC
+//DDDD
+//EEEEE
+//FFFFFF
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    char print = 65;
+
+    for(int i=0; i<n ;i++){
+        print++;
+        for(int j=0;j<=i; j++){
+            cout<<print;
+        }
+
+        cout<<endl;
+    }    
+    return 0;
+}
