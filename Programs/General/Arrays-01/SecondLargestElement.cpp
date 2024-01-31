@@ -4,22 +4,16 @@
 using namespace std;
 
 int GetSecondLargest(int arr[] , int n){
-    int Largest = 0;
+    int Largest = -1;
     int SecondLargest = -1;
 
-    for (int i = 1; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         if(arr[i]>arr[Largest]){
             
             SecondLargest = Largest;
             Largest = i;
         }
-        else if(arr[i]>arr[SecondLargest] && i!=Largest){
-            SecondLargest = i;
-        }
-
-        
-        
     }
 
     return SecondLargest;
