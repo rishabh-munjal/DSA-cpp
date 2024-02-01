@@ -8,7 +8,7 @@ int GetSecondLargest(int arr[] , int n){
     int SecondLargest = -1;
 
     for (int i = 0; i < n; i++)
-    {
+    {                                       //Error
         if(arr[i]>arr[Largest]){
             
             SecondLargest = Largest;

@@ -7,7 +7,7 @@ int getlargest(int arr[] , int n){
     
     int max = 0;
 
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; i++)             //traversing through array and updating the max in variable
     {
         if(arr[i]>arr[max]){
             max = i;

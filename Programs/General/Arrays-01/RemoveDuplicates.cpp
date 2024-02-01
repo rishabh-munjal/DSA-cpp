@@ -3,9 +3,25 @@
 #include <iostream>
 using namespace std;
 
-int filter(int arr[] , int n){
+void filter(int arr[] , int n){
     
+    int res = 1;
+
+    for (int i = 0; i < n; i++)     //using res shifted the elements
+    {
+        if(arr[i] != arr[res-1]){
+            arr[res] = arr[i];
+            res++;
+        }
+    }
+
+    for (int i = 0; i < res; i++)
+    {
+        cout<<arr[i];
+    }
     
+    return ;
+      
 }
 
 int main()
