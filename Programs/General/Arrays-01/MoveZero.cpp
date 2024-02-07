@@ -25,7 +25,7 @@ void movezeros(int arr[] , int n){
 
 int main()
 {
-    int arr[5] = {1,0,9,0,0};
+    int arr[5] = {0,1,0,3,12};
 
     movezeros(arr,5);
 
