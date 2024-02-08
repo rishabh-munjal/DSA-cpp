@@ -9,7 +9,7 @@ int FindMax_SecondMax(vector <int> nums){
     int max = 0;
     int SecondMax = 0;
 
-    for(int i=0 ; i<nums.size() ; i++){
+    for(int i=0 ; i<nums.size() ; i++){               //ERROR
         if(nums[i] > nums[max]){
             max = i;
         }

@@ -12,7 +12,7 @@ class test{
 }t2,t3;     //object initialization within class
 
 void test::show(){
-    cout<<"This is show()"
+    cout<<"This is show()";
 }
 
 int main()
