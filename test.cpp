@@ -1,25 +1,31 @@
 #include <iostream>
 using namespace std;
 
-class test{
-    int a;
-    public:
-        void disp(){
-            cout<<"This is display";
-        }
-        void show();
-        
-}t2,t3;     //object initialization within class
-
-void test::show(){
-    cout<<"This is show()";
-}
-
 int main()
 {
-    test t1;
-    t1.disp();
-    t2.show();
-    
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {   
+
+        int counter = i + 2;
+
+        for (int j = 0; j < n + i; j++) {
+            if (j < n - i - 1) {
+                cout << " ";
+            }
+            else if (j <= n - 1) {
+                cout << counter;
+                counter++;
+            }
+            else {
+                counter--;
+                cout << counter;
+            }
+        }
+;
+
+        cout << endl;
+    }
     return 0;
 }
