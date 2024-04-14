@@ -40,14 +40,17 @@ int CountandMerge(vector <int> a , int l , int mid , int r){
     }
 
     while (i < n1) {
-        arr[k] = a1[i];
+        a[k] = a1[i];
         k++; i++;
     }
 
     while (j < n2) {
-        arr[k] = a2[j];
+        a[k] = a2[j];
         k++; j++;
     }
+
+
+    return res;
 
 }
 
