@@ -2,6 +2,7 @@
 
 #include <bits/stdc++.h>
 
+
 using namespace std;
 
 int findMinDiff(int arr[], int n, int m){
