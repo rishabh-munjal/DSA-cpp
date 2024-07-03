@@ -16,12 +16,12 @@ void Boundry(vector <vector<int>> arr){
             cout<<arr[top][i]<<" ";
         }
         top++;
-        .
-        .
-        .
-        .
-        .
-        .
+        // .
+        // .
+        // .
+        // .
+        // .
+        // .
         
     }
 
