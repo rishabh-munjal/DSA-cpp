@@ -16,7 +16,7 @@ int Search(int arr[], int target) {
     if (arr[i] == target) {
         return i;
     } else {
-        return binary_search(arr, target, i / 2 + 1, i - 1); // Added semicolon
+        return binary_search(arr, target, i / 2 + 1, i - 1); 
     }
 }
 

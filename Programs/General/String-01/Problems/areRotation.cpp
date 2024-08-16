@@ -7,8 +7,8 @@
 
  bool areRotated(string a , string b){
 
-    int len = a.length();
-    int i = 0;
+    /*  int len = a.length();
+        int i = 0;
 
     while(i < len){
         rotate(a.begin() , a.begin() + 1 , a.end());
@@ -23,7 +23,11 @@
         
     }
 
-    return false;
+    return false;*/
+
+//E F F I C I E N T 
+
+    return ((a.length() == b.length()) && ((a+b).find(b) != string::npos));
 
 
  }
@@ -31,7 +35,7 @@
  int main(){
 
     string a = "mightandmagic";
-    string b = "andmagicmigth";
+    string b = "andmagicmzgth";
 
     cout<<areRotated(a,b);
 
