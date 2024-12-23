@@ -13,10 +13,6 @@ iv ) for every vertex u  in the topological sort
 */
 
 
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <climits>
 
 using namespace std;
 
