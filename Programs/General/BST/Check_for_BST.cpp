@@ -35,7 +35,7 @@ Node* insert(Node* root, int key) {
         iii) for left child of a node , in range we change the upper bound as nodes values
         iv) for the right child of the node we change the lower bound of the value
 
-    Efficient Solution II -> fact that inorder travel of BST is sorted
+    Efficient Solution II -> fact that inorder travel of BST is sorted *****
 */
 
 bool check(Node* root , int min , int max) {
