@@ -10,14 +10,6 @@ v) while(!pq.empty()){
       }
 
 */
-
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <climits>
-
-using namespace std;
-
 typedef pair<int, int> pii; // (distance, node)
 
 // Function to find the shortest paths from `src` using Dijkstra's Algorithm
@@ -68,29 +60,4 @@ int main() {
     }
 
     return 0;
-}
-
-    vector<int> dis(V , INT_MAX);
-    dis[src] = 0;
-
-    vector<bool> fin(V , false); //finalized
-
-    for(int count = 0 ; count < v-1 ; count++){
-        int u = - 1;
-        for(int i = 0 ; i < v ; i++){
-            if(!fin[i] && (u == - 1 || dis[i] < dis[u])){
-                u = i;
-            }
-
-            fin[i] = true;
-
-            for(int v = 0 ; v< V ; v++){
-                if(graph[u][v] != 0 && fin[v] == false){
-                    dis[v] = min(dis[v] , dis[u] + graph[u][v])
-                }
-            }
-        }
-
-        return dis;
-    }
 }

@@ -9,7 +9,7 @@ void BFS(vector<int> adj[], int V, int s)
 
     while (!q.empty())
     {
-        int u = q.front();
+        int u = q.front(); 
         q.pop();
 
         cout << u << " ";

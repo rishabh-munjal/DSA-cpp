@@ -12,55 +12,84 @@ iv ) for every vertex u  in the topological sort
                     dist[v] = dist[u] + weight[u,v]
 */
 
-
-
+#include <bits/stdc++.h>
 using namespace std;
 
-// Perform DFS to find topological order
-void topologicalSortDFS(int node, vector<vector<pair<int, int>>>& adj, vector<bool>& visited, stack<int>& st) {
-    visited[node] = true;
-    for (auto& neighbor : adj[node]) {
-        int nextNode = neighbor.first;
-        if (!visited[nextNode]) {
-            topologicalSortDFS(nextNode, adj, visited, st);
+void shortestPathDAG(int n, vector<pair<int, int>> adj[], int src) {
+    vector<int> inDegree(n, 0);
+    vector<int> topoOrder;
+    queue<int> q;
+
+    // Calculate in-degree of each node
+    for (int u = 0; u < n; u++) {
+        for (auto &[v, wt] : adj[u]) {
+            inDegree[v]++;
         }
     }
-    st.push(node);
-}
 
-// Shortest Path in a DAG
-vector<int> shortestPathDAG(int n, vector<vector<pair<int, int>>>& adj, int start) {
-    // Step i: Initialize distances
-    vector<int> dist(n, INT_MAX);
-
-    // Step ii: Set the start node's distance to 0
-    dist[start] = 0;
-
-    // Step iii: Find the topological sort
-    stack<int> st;
-    vector<bool> visited(n, false);
+    // Push nodes with in-degree 0 into the queue
     for (int i = 0; i < n; i++) {
-        if (!visited[i]) {
-            topologicalSortDFS(i, adj, visited, st);
+        if (inDegree[i] == 0) {
+            q.push(i);
         }
     }
 
-    // Step iv: Process each vertex in topological order
-    while (!st.empty()) {
-        int u = st.top();
-        st.pop();
+    // Topological Sorting using BFS (Kahn’s Algorithm)
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        topoOrder.push_back(u);
+        
+        for (auto &[v, wt] : adj[u]) {
+            if (--inDegree[v] == 0) {
+                q.push(v);
+            }
+        }
+    }
 
-        if (dist[u] != INT_MAX) { // Only proceed if the node is reachable
-            for (auto& neighbor : adj[u]) {
-                int v = neighbor.first;
-                int weight = neighbor.second;
-                if (dist[v] > dist[u] + weight) {
-                    dist[v] = dist[u] + weight;
+    // Step 2: Find Shortest Path using Topological Order
+    vector<int> dist(n, INT_MAX);
+    dist[src] = 0;  // Source distance is 0
+
+    for (int u : topoOrder) {
+        if (dist[u] != INT_MAX) {
+            for (auto &[v, wt] : adj[u]) {
+                if (dist[u] + wt < dist[v]) {
+                    dist[v] = dist[u] + wt;
                 }
             }
         }
     }
 
-    return dist;
+    // Print the shortest distances
+    cout << "Shortest distances from source " << src << ":\n";
+    for (int i = 0; i < n; i++) {
+        if (dist[i] == INT_MAX) {
+            cout << "Node " << i << ": INF\n";
+        } else {
+            cout << "Node " << i << ": " << dist[i] << "\n";
+        }
+    }
+}
+
+int main() {
+    int n = 6; // Number of nodes
+    vector<pair<int, int>> adj[n];
+
+    // Graph edges (u → v, weight)
+    adj[0].push_back({1, 5});
+    adj[0].push_back({2, 3});
+    adj[1].push_back({3, 6});
+    adj[1].push_back({2, 2});
+    adj[2].push_back({4, 4});
+    adj[2].push_back({5, 2});
+    adj[2].push_back({3, 7});
+    adj[3].push_back({4, -1});
+    adj[4].push_back({5, -2});
+
+    int src = 1;  // Source node
+    shortestPathDAG(n, adj, src);
+
+    return 0;
 }
 

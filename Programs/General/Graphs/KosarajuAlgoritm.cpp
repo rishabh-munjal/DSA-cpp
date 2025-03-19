@@ -54,7 +54,7 @@ class Solution
         
         vector<vector<int>> adjReversed(V);
         for(int u = 0; u<V; u++) {
-            for(int &v : adj[u]) {
+            for(int &v : adj[u]) {  
                 
                 //u->v
                 //v->u
