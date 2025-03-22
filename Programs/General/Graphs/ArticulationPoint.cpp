@@ -1,73 +1,46 @@
-// Do DFS traversal of the given graph 
+// tin = time of inseriton
+            //low =- min time of iunsertion of adjacent nodes except parent and visirted nodes
 
-// In DFS traversal, maintain a parent[] array where parent[u] stores the parent of vertex u.
+void dfs(int node , int parent , vector<bool>& visited , vector<int> adj[] , int tin[] , int low[] , vector<int>& result){
 
-// To check if u is the root of the DFS tree and it has at least two children. For every vertex, count children. If the currently visited vertex u is root (parent[u] is NULL) and has more than two children, print it. 
-
-// To handle a second case where u is not the root of the DFS tree and it has a child v such that no vertex in the subtree rooted with v has a back edge to one of the ancestors in DFS tree of u maintain an array disc[] to store the discovery time of vertices.
-// For every node u, find out the earliest visited vertex (the vertex with minimum discovery time) that can be reached from the subtree rooted with u. So we maintain an additional array low[] such that: 
-
-// low[u] = min(disc[u], disc[w]) , Here w is an ancestor of u and there is a back edge from some descendant of u to w.
-
-void APUtil(vector<int> adj[], int u, bool visited[],
-            int disc[], int low[], int& time, int parent,
-            bool isAP[])
-{
-    // Count of children in DFS Tree
+    static int timer = 0;
+    visited[node] = true;
+    tin[node] = low[node] = timer++;
     int children = 0;
 
-    // Mark the current node as visited
-    visited[u] = true;
-
-    // Initialize discovery time and low value
-    disc[u] = low[u] = ++time;
-
-    // Go through all vertices adjacent to this
-    for (auto v : adj[u]) {
-        // If v is not visited yet, then make it a child of u
-        // in DFS tree and recur for it
-        if (!visited[v]) {
+    for(auto it : adj[node]){
+        if(it == parent) continue;
+        if(!visited[it]){
             children++;
-            APUtil(adj, v, visited, disc, low, time, u, isAP);
-
-            // Check if the subtree rooted with v has
-            // a connection to one of the ancestors of u
-            low[u] = min(low[u], low[v]);
-
-            // If u is not root and low value of one of
-            // its child is more than discovery value of u.
-            if (parent != -1 && low[v] >= disc[u])
-                isAP[u] = true;
+            dfs(it , node , visited , adj , tin , low , result);
+            low[node] = min(low[node] , low[it]);
+            if(low[it] >= tin[node]){   // ! change in this line
+                result.push_back(node);
+            }
+        }else{
+            low[node] = min(low[node] , tin[it]);
         }
-
-        // Update low value of u for parent function calls.
-        else if (v != parent)
-            low[u] = min(low[u], disc[v]);
     }
 
-    // If u is root of DFS tree and has two or more children.
-    if (parent == -1 && children > 1)
-        isAP[u] = true;
+    if(parent == -1 && children > 1){
+        result.push_back(node);
+    }
 }
 
-void AP(vector<int> adj[], int V)
-{
-    int disc[V] = { 0 };
-    int low[V];
-    bool visited[V] = { false };
-    bool isAP[V] = { false };
-    int time = 0, par = -1;
 
-    // Adding this loop so that the
-    // code works even if we are given
-    // disconnected graph
-    for (int u = 0; u < V; u++)
-        if (!visited[u])
-            APUtil(adj, u, visited, disc, low,
-                   time, par, isAP);
+vector<int> articulationPoints(int n , vector<int>adj[]){
 
-    // Printing the APs
-    for (int u = 0; u < V; u++)
-        if (isAP[u] == true)
-            cout << u << " ";
+
+    vector<bool> visited(n , false);
+    int tin[n] , low[n];
+    vector<int> result;
+
+
+    for(int i = 0 ; i < n ; i++){
+        if(!visited[i]){
+            dfs(i , -1 , visited , adj , tin , low , result);
+        }
+    }
+
+    return result;
 }
