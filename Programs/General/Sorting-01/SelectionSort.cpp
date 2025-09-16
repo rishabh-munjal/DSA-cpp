@@ -5,20 +5,21 @@
 using namespace std;
 
 void SelectionSort(vector <int> &nums){
-    int n = nums.size() ; 
+    int n = nums.size();
 
-    for(int i=0 ; i < n ; i++){
-        
-        int min_ind = i;
-
-        for(int j = i+1 ; j<n ; j++){
-            if(nums[j] < nums[min_ind]){
-                min_ind = j;
+    for(int i = 0 ; i < n ; i++){
+        int m = i;
+        for(int j = i + 1 ; j < n ; j++){
+            if(nums[j] < nums[m]){
+                m = j;
             }
-
-            swap(nums[min_ind] , nums[i]);
         }
+
+        swap(nums[i] , nums[m]);
     }
+
+    return;
+
 }
 
 int main()
